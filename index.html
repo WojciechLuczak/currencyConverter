@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kalkulator Walut</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="backgroundContainer">
+    <div class="formContainer">
+      <h1 class="formContainer__title">Kalkulator Walut</h1>
+      <div class="form">
+        <label class="form__label" for="amount">Kwota:</label>
+        <input class="form__input" type="number" id="amount" placeholder="tutaj wpisz kwote do przeliczenia">
+
+        <label class="form__label" for="from">Z:</label>
+        <select class="form__select" id="from">
+          <option>PLN</option>
+          <option>USD</option>
+          <option>EUR</option>
+        </select>
+
+        <label class="form__label" for="to">Na:</label>
+        <select class="form__select" id="to">
+          <option >USD</option>
+          <option >EUR</option>
+          <option >PLN</option>
+        </select>
+
+        <button class="form__button" onclick="convert()">Przelicz</button>
+      </div>
+
+      <div id="result" class="result"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
