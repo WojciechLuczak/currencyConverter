@@ -1,63 +1,67 @@
-let convertButton = document.querySelector('button');
-convertButton.addEventListener('click', function() {
-  let amount = parseFloat(document.querySelector('#amount').value);
-  let from = document.querySelector('#from').value;
-  let to = document.querySelector('#to').value;
+function getSelectedValue(selector) {
+  const element = document.querySelector(selector);
+  return element.value;
+}
 
-  let rate;
+function getAmountValue() {
+  const amount = parseFloat(document.querySelector('#amount').value);
+  return amount;
+}
 
-
+function getExchangeRate(from, to) {
   switch (from) {
     case 'PLN':
       switch (to) {
         case 'USD':
-          rate = 0.26;
-          break;
+          return 0.26;
         case 'EUR':
-          rate = 0.22;
-          break;
+          return 0.22;
         default:
-          rate = 1; 
-          break;
+          return 1;
       }
-      break;
     case 'USD':
       switch (to) {
         case 'PLN':
-          rate = 3.85;
-          break;
+          return 3.85;
         case 'EUR':
-          rate = 0.85;
-          break;
+          return 0.85;
         default:
-          rate = 1; 
-          break;
+          return 1;
       }
-      break;
     case 'EUR':
       switch (to) {
         case 'PLN':
-          rate = 4.53;
-          break;
+          return 4.53;
         case 'USD':
-          rate = 1.17;
-          break;
+          return 1.17;
         default:
-          rate = 1; 
-          break;
+          return 1;
       }
-      break;
     default:
-      rate = 1; 
-      break;
+      return 1;
+  }
+}
+
+function convertCurrency() {
+  let amount = getAmountValue();
+  let from = getSelectedValue('#from');
+  let to = getSelectedValue('#to');
+
+  if (from === to) {
+    document.querySelector('#result').innerHTML = 'Wybierz waluty inne od siebie!';
+    return;
   }
 
+  let rate = getExchangeRate(from, to);
 
   if (isNaN(amount) || amount <= 0) {
     document.querySelector('#result').innerHTML = 'Wpisz dodatnią liczbę';
-    return; }
+    return;
+  }
 
-    let result = amount * rate;
+  let result = amount * rate;
+  document.querySelector('#result').innerHTML = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+}
 
-    document.querySelector('#result').innerHTML = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
-});
+const convertButton = document.querySelector('button');
+convertButton.addEventListener('click', convertCurrency);
