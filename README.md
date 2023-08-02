@@ -7,7 +7,7 @@ You click the button to check and you can see the result at the bottom.
 ## Screenshot of the app:
 ![app screenshot](img/demo.png)
 ## demo of the website:
-Try the [demo website here]([https://wojciechluczak.github.io/currencyConverter)
+Try the [demo website here](https://wojciechluczak.github.io/currencyConverter)
 ## Technologies used to make the page:
 - Javascript 
 - CSS
