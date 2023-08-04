@@ -1,4 +1,4 @@
-function getSelectedValue(selector) {
+{function getSelectedValue(selector) {
   const element = document.querySelector(selector);
   return element.value;
 }
@@ -42,26 +42,32 @@ function getExchangeRate(from, to) {
   }
 }
 
+function setResult(chosenResult) {
+  document.querySelector('#result').innerHTML = chosenResult;
+}
+
 function convertCurrency() {
   let amount = getAmountValue();
   let from = getSelectedValue('#from');
   let to = getSelectedValue('#to');
+  let rate = getExchangeRate(from, to);
 
   if (from === to) {
-    document.querySelector('#result').innerHTML = 'Wybierz waluty inne od siebie!';
+    setResult('Wybierz waluty inne od siebie!');
     return;
   }
 
-  let rate = getExchangeRate(from, to);
-
   if (isNaN(amount) || amount <= 0) {
-    document.querySelector('#result').innerHTML = 'Wpisz dodatnią liczbę';
+    setResult('Wpisz dodatnią liczbę');
     return;
   }
 
   let result = amount * rate;
-  document.querySelector('#result').innerHTML = `${amount} ${from} = ${result.toFixed(2)} ${to}`;
+  setResult(`${amount} ${from} = ${result.toFixed(2)} ${to}`);
 }
-
-const convertButton = document.querySelector('button');
-convertButton.addEventListener('click', convertCurrency);
+function init() {
+  const convertButton = document.querySelector('button');
+  convertButton.addEventListener('click', convertCurrency);
+}
+init();
+}
